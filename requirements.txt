@@ -1,0 +1,5 @@
+pandas
+config
+requests
+streamlit
+streamlit_lottie
