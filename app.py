@@ -84,10 +84,10 @@ def optimized_recommendations(title, n):
 
 # From here I am starting the reading
 
-Final_Movies_list = pickle.load(open('New_data.pkl','rb'))
+Final_Movies_list = pd.read_pickle('New_data.pkl')
 
 
-temp_data = pickle.load(open('temp_data.pkl','rb'))
+temp_data = pd.read_pickle('temp_data.pkl')
 # using tfidf vectorization and taking max_features = row size, and for ignoring stop words like a, is, am etc
 
 tf = TfidfVectorizer(max_features = 4501, stop_words = 'english')
