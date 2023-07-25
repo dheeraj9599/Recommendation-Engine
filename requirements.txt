@@ -3,3 +3,4 @@ config
 requests
 streamlit
 streamlit_lottie
+scikit-learn
