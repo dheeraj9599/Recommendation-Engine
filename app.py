@@ -141,10 +141,10 @@ with st.container():
     st.write("---")
     l_col, r_col = st.columns(2)
     with l_col:
-        st.subheader("Hi, I am Dheeraj :wave:")
-        st.subheader("A Front-end Web Developer")
+        st.subheader("Hello, my name is Dheeraj, :wave:")
+        st.subheader("I am currently pursuing my B.Tech in Mathematics and Computing from Delhi Technological University.")
         st_lottie(welcome, height=150, key="Welcome" )
-        st.header("To My Website of Movie Recommender System")
+        st.header("To my website presenting the Movie Recommendation Engine")
         
 
     with r_col:
@@ -156,7 +156,7 @@ Genre = ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', '
  'History', 'Horror', 'Music', 'Mystery', 'Romance', 'Science Fiction', 'TV Movie', 'Thriller', 'War', 'Western']
 if __name__ == '__main__':
 
-    st.header('Movie Recommender System') 
+    st.header('Movie Recommendation Search Engine') 
     Str = ['--------Select--------', 'Recommend Movies on the basis the Genre', 'Recommend similar Movies ','Recommend Top Rated Movies']   
     Str_options = st.selectbox('How may I recommend movies to you ?', Str)
 
