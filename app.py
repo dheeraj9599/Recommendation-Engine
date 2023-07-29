@@ -65,7 +65,7 @@ def optimized_recommendations(title, n):
     # finding similarity scores and sorting the resultant movies in descending order of sim_scores
     
     # enumerate function holds the indixes while calculating similarity
-    sim_scores = list(enumerate(Matrix[idx]))
+    sim_scores = list(enumerate(cosine_sim[idx]))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
     sim_scores = sim_scores[1:n+1]
     
@@ -86,21 +86,19 @@ def optimized_recommendations(title, n):
 
 Final_Movies_list = pd.read_pickle('New_data.pkl')
 
+# Converting list to create a single string
+Final_Movies_list['details'] = Final_Movies_list['details'].apply(lambda x: " ".join(x))
 
-temp_data = pd.read_pickle('temp_data.pkl')
-# using tfidf vectorization and taking max_features = row size, and for ignoring stop words like a, is, am etc
 
-tf = TfidfVectorizer(max_features = 4501, stop_words = 'english')
 
-tfidf_matrix = tf.fit_transform(temp_data['details'])
+vec = TfidfVectorizer(max_features = 4501, stop_words = 'english')
+
+vec_matrix = vec.fit_transform(Final_Movies_list['details'])
 
 
 # using sklearn library calculating cosine similarity
 
-cosine_sim1 = linear_kernel(tfidf_matrix, tfidf_matrix)
-
-Matrix = cosine_sim1
-
+cosine_sim = linear_kernel(vec_matrix, vec_matrix)
 
 
 # Title of Movies
