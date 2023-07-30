@@ -155,7 +155,7 @@ Genre = ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', '
 if __name__ == '__main__':
 
     st.header('Movie Recommendation Search Engine') 
-    Str = ['--------Select--------', 'Recommend Movies on the basis the Genre', 'Recommend similar Movies ','Recommend Top Rated Movies']   
+    Str = ['--------Select--------', 'Recommend Movies on the basis of selected Genre', 'Recommend similar movies on the basis of the selected movie','Recommend Top-rated Movies']   
     Str_options = st.selectbox('How may I recommend movies to you ?', Str)
 
     # recommending movies on the basis on genre
