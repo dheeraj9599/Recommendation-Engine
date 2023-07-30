@@ -23,7 +23,7 @@ from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 # from here I am fetching the posters
 def fetch_poster(movie_id):
 
-    url = "https://api.themoviedb.org/3/movie/{}?api_key={}".format(movie_id, API_KEY)
+    url = "https://api.themoviedb.org/3/movie/{}?api_key={}".format(movie_id, st.secrets["API_KEY"])
     data = requests.get(url)
 
 
