@@ -51,7 +51,7 @@ def Movies_on_the_basis_of_genre(Genre = ['Action', 'Adventure', 'Animation', 'C
     x = pd.concat([d, x], axis = 1)
     x['Genres'] = Final_Movies_list['genres']
     x = x.explode('genres')
-    x= x[(x['genres'] == Genre)][[ 'weigh_avg_rating', 'id', 'title', 'Genres', 'cast','overview',]].sort_values(by = 'weigh_avg_rating',
+    x= x[(x['genres'] == Genre.lower())][[ 'weigh_avg_rating', 'id', 'title', 'Genres', 'cast','overview',]].sort_values(by = 'weigh_avg_rating',
                             ascending = False).reset_index(drop = True).head(c)
     return x
 
@@ -155,7 +155,7 @@ Genre = ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', '
 if __name__ == '__main__':
 
     st.header('Movie Recommendation Search Engine') 
-    Str = ['--------Select--------', 'Recommend Movies on the basis of selected Genre', 'Recommend similar movies on the basis of the selected movie','Recommend Top-rated Movies']   
+    Str = ['--------Select--------', 'Recommend Movies on the basis of selected Genre', 'Recommend similar movies on the basis of a selected movie','Recommend Top-rated Movies']   
     Str_options = st.selectbox('How may I recommend movies to you ?', Str)
 
     # recommending movies on the basis on genre
