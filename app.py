@@ -114,7 +114,7 @@ Top_rated_movies = Final_Movies_list.sort_values('weigh_avg_rating', ascending=F
 
 
 
-st.set_page_config(page_title="Recommendation engine", page_icon=":movie_camera:", layout="wide")
+st.set_page_config(page_title="Recommendation engine", page_icon="https://www.kindpng.com/picc/m/30-300778_transparent-movie-marquee-png-movie-icon-png-flat.png", layout="wide")
 
 # header section
 
