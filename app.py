@@ -14,7 +14,17 @@ import streamlit as st
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 
+import ast
+from ast import literal_eval
 
+# for vectorization and Cosine Distance or similarity
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
+
+# for stemming the words
+from nltk.stem.snowball import SnowballStemmer
+from nltk.stem.wordnet import WordNetLemmatizer
+from nltk.corpus import wordnet
 
 
 
@@ -51,7 +61,7 @@ def Movies_on_the_basis_of_genre(Genre = ['Action', 'Adventure', 'Animation', 'C
     x = pd.concat([d, x], axis = 1)
     x['Genres'] = Final_Movies_list['genres']
     x = x.explode('genres')
-    x= x[(x['genres'] == Genre)][[ 'weigh_avg_rating', 'id', 'title', 'Genres', 'cast','overview',]].sort_values(by = 'weigh_avg_rating',
+    x= x[(x['genres'] == Genre.lower())][[ 'weigh_avg_rating', 'id', 'title', 'Genres', 'cast','overview',]].sort_values(by = 'weigh_avg_rating',
                             ascending = False).reset_index(drop = True).head(c)
     return x
 
@@ -65,7 +75,7 @@ def optimized_recommendations(title, n):
     # finding similarity scores and sorting the resultant movies in descending order of sim_scores
     
     # enumerate function holds the indixes while calculating similarity
-    sim_scores = list(enumerate(Matrix[idx]))
+    sim_scores = list(enumerate(cosine_sim[idx]))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
     sim_scores = sim_scores[1:n+1]
     
@@ -84,23 +94,24 @@ def optimized_recommendations(title, n):
 
 # From here I am starting the reading
 
-Final_Movies_list = pickle.load(open('New_data.pkl','rb'))
+Final_Movies_list = pd.read_pickle('New_data.pkl')
+
+# Converting list to create a single string
+Final_Movies_list['details'] = Final_Movies_list['details'].apply(lambda x: " ".join(x))
 
 
-temp_data = pickle.load(open('temp_data.pkl','rb'))
-# using tfidf vectorization and taking max_features = row size, and for ignoring stop words like a, is, am etc
+x = Movies_on_the_basis_of_genre('Action', 10)
+print(x)
 
-tf = TfidfVectorizer(max_features = 4501, stop_words = 'english')
 
-tfidf_matrix = tf.fit_transform(temp_data['details'])
+vec = TfidfVectorizer(max_features = 4501, stop_words = 'english')
+
+vec_matrix = vec.fit_transform(Final_Movies_list['details'])
 
 
 # using sklearn library calculating cosine similarity
 
-cosine_sim1 = linear_kernel(tfidf_matrix, tfidf_matrix)
-
-Matrix = cosine_sim1
-
+cosine_sim = linear_kernel(vec_matrix, vec_matrix)
 
 
 # Title of Movies
@@ -116,7 +127,8 @@ Top_rated_movies = Final_Movies_list.sort_values('weigh_avg_rating', ascending=F
 
 
 
-st.set_page_config(page_title="Recommendation engine", page_icon=":movie_camera:", layout="wide")
+
+st.set_page_config(page_title="Recommendation engine", page_icon="https://www.kindpng.com/picc/m/30-300778_transparent-movie-marquee-png-movie-icon-png-flat.png", layout="wide")
 
 # header section
 
