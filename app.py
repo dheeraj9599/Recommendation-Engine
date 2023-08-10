@@ -100,18 +100,12 @@ Final_Movies_list = pd.read_pickle('New_data.pkl')
 Final_Movies_list['details'] = Final_Movies_list['details'].apply(lambda x: " ".join(x))
 
 
-<<<<<<< HEAD
 x = Movies_on_the_basis_of_genre('Action', 10)
 print(x)
 
 
 vec = TfidfVectorizer(max_features = 4501, stop_words = 'english')
 
-=======
-
-vec = TfidfVectorizer(max_features = 4501, stop_words = 'english')
-
->>>>>>> c6b9883a130cea83f52984219b8c72ae53c3d779
 vec_matrix = vec.fit_transform(Final_Movies_list['details'])
 
 
@@ -133,10 +127,6 @@ Top_rated_movies = Final_Movies_list.sort_values('weigh_avg_rating', ascending=F
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> c6b9883a130cea83f52984219b8c72ae53c3d779
 st.set_page_config(page_title="Recommendation engine", page_icon="https://www.kindpng.com/picc/m/30-300778_transparent-movie-marquee-png-movie-icon-png-flat.png", layout="wide")
 
 # header section
