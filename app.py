@@ -11,20 +11,9 @@ from streamlit_lottie import st_lottie
 import streamlit as st
 
 # for vectorization and Cosine Distance or similarity
-from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel
 
-import ast
-from ast import literal_eval
-
-# for vectorization and Cosine Distance or similarity
-from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
-
-# for stemming the words
-from nltk.stem.snowball import SnowballStemmer
-from nltk.stem.wordnet import WordNetLemmatizer
-from nltk.corpus import wordnet
 
 
 
