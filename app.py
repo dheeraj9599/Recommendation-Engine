@@ -100,9 +100,6 @@ Final_Movies_list = pd.read_pickle('New_data.pkl')
 Final_Movies_list['details'] = Final_Movies_list['details'].apply(lambda x: " ".join(x))
 
 
-x = Movies_on_the_basis_of_genre('Action', 10)
-print(x)
-
 
 vec = TfidfVectorizer(max_features = 4501, stop_words = 'english')
 
