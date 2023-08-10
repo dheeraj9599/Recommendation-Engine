@@ -33,20 +33,20 @@ from nltk.corpus import wordnet
 # from here I am fetching the posters
 def fetch_poster(movie_id):
 
-    url = "https://api.themoviedb.org/3/movie/{}?api_key=4125b44e30d3b8c21db8d9bfaceddbfe&language=en-US".format(movie_id)
+    url = "https://api.themoviedb.org/3/movie/{}?api_key={}".format(movie_id, st.secrets["API_KEY"])
     data = requests.get(url)
 
 
     # handling the response 404 error
     if data.status_code == 404:       
-        return "https://th.bing.com/th/id/R.e5e0354514c70fd464177625d85ad530?rik=2cpvKOckFETaUA&riu=http%3a%2f%2fdrpp-ny.org%2fwp-content%2fuploads%2f2014%2f07%2fsorry-image-not-available.png&ehk=Vr%2brN9GaGUkGM2yuKpT1w2pQfZ16Wq3tpZf3hCvrBbg%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
+        return "https://ndpp.co.in/wp-content/uploads/2018/01/sorry-image-not-available.jpg"
      
     data = data.json()   
     poster_path = data['poster_path'] 
      
     # if poster is not available for the movie 
     if poster_path == None :
-        return "https://th.bing.com/th/id/R.e5e0354514c70fd464177625d85ad530?rik=2cpvKOckFETaUA&riu=http%3a%2f%2fdrpp-ny.org%2fwp-content%2fuploads%2f2014%2f07%2fsorry-image-not-available.png&ehk=Vr%2brN9GaGUkGM2yuKpT1w2pQfZ16Wq3tpZf3hCvrBbg%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
+        return "https://ndpp.co.in/wp-content/uploads/2018/01/sorry-image-not-available.jpg"
     
     full_path = "https://image.tmdb.org/t/p/w500/" + poster_path
     
@@ -100,12 +100,18 @@ Final_Movies_list = pd.read_pickle('New_data.pkl')
 Final_Movies_list['details'] = Final_Movies_list['details'].apply(lambda x: " ".join(x))
 
 
+<<<<<<< HEAD
 x = Movies_on_the_basis_of_genre('Action', 10)
 print(x)
 
 
 vec = TfidfVectorizer(max_features = 4501, stop_words = 'english')
 
+=======
+
+vec = TfidfVectorizer(max_features = 4501, stop_words = 'english')
+
+>>>>>>> c6b9883a130cea83f52984219b8c72ae53c3d779
 vec_matrix = vec.fit_transform(Final_Movies_list['details'])
 
 
@@ -127,7 +133,10 @@ Top_rated_movies = Final_Movies_list.sort_values('weigh_avg_rating', ascending=F
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c6b9883a130cea83f52984219b8c72ae53c3d779
 st.set_page_config(page_title="Recommendation engine", page_icon="https://www.kindpng.com/picc/m/30-300778_transparent-movie-marquee-png-movie-icon-png-flat.png", layout="wide")
 
 # header section
@@ -153,10 +162,10 @@ with st.container():
     st.write("---")
     l_col, r_col = st.columns(2)
     with l_col:
-        st.subheader("Hi, I am Dheeraj :wave:")
-        st.subheader("A Front-end Web Developer")
+        st.subheader("Hello, my name is Dheeraj, :wave:")
+        st.subheader("I am currently pursuing my B.Tech in Mathematics and Computing from Delhi Technological University.")
         st_lottie(welcome, height=150, key="Welcome" )
-        st.header("To My Website of Movie Recommender System")
+        st.header("To my website presenting the Movie Recommendation Engine")
         
 
     with r_col:
@@ -168,8 +177,8 @@ Genre = ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentary', '
  'History', 'Horror', 'Music', 'Mystery', 'Romance', 'Science Fiction', 'TV Movie', 'Thriller', 'War', 'Western']
 if __name__ == '__main__':
 
-    st.header('Movie Recommender System') 
-    Str = ['--------Select--------', 'Recommend Movies on the basis the Genre', 'Recommend similar Movies ','Recommend Top Rated Movies']   
+    st.header('Movie Recommendation Search Engine') 
+    Str = ['--------Select--------', 'Recommend Movies on the basis of selected Genre', 'Recommend similar movies on the basis of a selected movie','Recommend Top-rated Movies']   
     Str_options = st.selectbox('How may I recommend movies to you ?', Str)
 
     # recommending movies on the basis on genre

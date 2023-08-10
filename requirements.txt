@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 pandas==1.5.3
+=======
+pandas<2.0.0
+>>>>>>> c6b9883a130cea83f52984219b8c72ae53c3d779
 pandocfilters==1.5.0
 pickleshare==0.7.5
 Pillow==9.4.0
@@ -9,4 +13,8 @@ sklearn==0.0
 spicy==0.16.0
 streamlit==1.17.0
 streamlit-lottie==0.0.3
+<<<<<<< HEAD
 numpy==1.24.1
+=======
+numpy==1.24.1
+>>>>>>> c6b9883a130cea83f52984219b8c72ae53c3d779
